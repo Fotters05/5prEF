@@ -1,0 +1,26 @@
+﻿<Window x:Class="Praktika5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Praktika5"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="Green">
+    
+    
+    <Grid Margin="0,0,0,-16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
+        
+        
+        <TextBlock x:Name="ОкноАвторизации" Text="Авторизация"  Margin="0,34,678,375" FontSize="20"/>
+        <Button Content="Авторизоваться" Click="ForAutorize" Margin="0,359,0,24" FontSize="30"/>
+        <TextBox x:Name="Log" Margin="0,145,400,268" />
+        <TextBlock x:Name="Login" Text="Введите логин:" Margin="0,113,400,310" FontSize="15"/>
+        <PasswordBox x:Name="Pass" Margin="0,240,400,173" />
+        <TextBlock x:Name="Password" Text="Введите пароль:" FontSize="15" Margin="0,214,400,210"/>
+    </Grid>
+    
+
+</Window>

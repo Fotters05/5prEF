@@ -1,0 +1,33 @@
+﻿<Window x:Class="Praktika5.Emp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Praktika5"
+        mc:Ignorable="d"
+        Title="Emp" Height="450" Width="800" Background="green">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <DataGrid x:Name="SushiBarHarmony" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <Button Content="Склад" Click="Storage" Margin="10,10,633,362"/>
+            <Button Content="Итог заказа" Click="Order" Margin="404,72,239,300"/>
+            <Button Content="Кол-во ингредиентов" Click="QuantIngr" Margin="167,10,476,362"/>
+            <Button Content="Суши" Click="Sushi" Margin="325,10,318,362"/>
+            <Button Content="Кол-во суши" Click="QuantSushi" Margin="482,10,166,362"/>
+            <Button Content="Суши сеты" Click="SushiSets" Margin="634,10,10,362"/>
+            <Button Content="Кол-во сетов в заказе" Click="QuantSets" Margin="246,72,396,300"/>
+            <Button Content="Способ оплаты" Click="Pay" Margin="325,134,319,238"/>
+            <Button Content="Выход" Click="ShowMainWindow" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+            <Button Content="Касса" Click="Cassa" Margin="325,196,319,176"/>
+    </Grid>
+
+
+</Window>

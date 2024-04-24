@@ -1,0 +1,28 @@
+﻿<Page x:Class="Praktika5.Cassa"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Praktika5"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Cassa">
+
+    <Grid>
+        <DataGrid x:Name="SushiBarHarmony" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False" SelectionChanged="SushiBarHarmony_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название сета" Binding="{Binding SushiSetName}"/>
+                <DataGridTextColumn Header="Цена за сет" Binding="{Binding SushiSetPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="Exit_Click" Content="Выход" Margin="705,408,10,10" />
+        <Button Click="Add" Content="+" Margin="301,225,469,196"/>
+        <Button Click="Minus" Content="-" Margin="455,225,315,196"/>
+        <ListBox Margin="10,282,10,42" x:Name="listbox" SelectionChanged="ListBox_SelectionChanged"/>
+        <TextBox x:Name="Vneseno" Margin="10,408,671,10" TextChanged="Vneseno_TextChanged"/>
+        <Button Content="Check" Click="Chek_Click" Margin="129,408,549,10"/>
+        <ComboBox x:Name="Spos" Margin="251,408,430,10" />
+        <Button Content="Check" Click="Chek_Click" Margin="129,408,549,10"/>
+        <ComboBox x:Name="All" Margin="455,10,10,408" MouseDoubleClick="All_MouseDoubleClick" />
+    </Grid>
+</Page>

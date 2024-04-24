@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SUSHIBARSModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autorize">
+          <Key>
+            <PropertyRef Name="ID_Autorize" />
+          </Key>
+          <Property Name="ID_Autorize" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Logins" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Passwords" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
+          <Property Name="TotalAmount" Type="int" Nullable="false" />
+          <Property Name="PaymentMethod_ID" Type="int" />
+          <Property Name="Employee_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderSushiSets">
+          <Key>
+            <PropertyRef Name="ID_OrderProduct" />
+          </Key>
+          <Property Name="ID_OrderProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_ID" Type="int" />
+          <Property Name="SushiSets_ID" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="ID_PaymentMethod" />
+          </Key>
+          <Property Name="ID_PaymentMethod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MethodName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuantityIngredients">
+          <Key>
+            <PropertyRef Name="ID_QuantityIngredients" />
+          </Key>
+          <Property Name="ID_QuantityIngredients" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Sushi_ID" Type="int" />
+          <Property Name="Ingredient_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StorageIngredients">
+          <Key>
+            <PropertyRef Name="ID_Ingredient" />
+          </Key>
+          <Property Name="ID_Ingredient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IngredientName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PriceFor50Gram" Type="int" Nullable="false" />
+          <Property Name="Supplier_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="ID_Supplier" />
+          </Key>
+          <Property Name="ID_Supplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Address_Suppliers" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sushi">
+          <Key>
+            <PropertyRef Name="ID_Sushi" />
+          </Key>
+          <Property Name="ID_Sushi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SushiName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PriceForOneRoll" Type="int" Nullable="false" />
+          <Property Name="Descriptions" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SushiQuant">
+          <Key>
+            <PropertyRef Name="ID_SushiQuant" />
+          </Key>
+          <Property Name="ID_SushiQuant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Sushi_ID" Type="int" />
+          <Property Name="SushiSets_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SushiSets">
+          <Key>
+            <PropertyRef Name="ID_SushiSets" />
+          </Key>
+          <Property Name="ID_SushiSets" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SushiSetName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SushiSetPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SushiQuant_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SUSHIBARS.dbo.SushiOrderSummary" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="SushiOrderSummary">
+          <Key>
+            <PropertyRef Name="SushiSetName" />
+            <PropertyRef Name="SushiSetPrice" />
+            <PropertyRef Name="PaymentMethod" />
+            <PropertyRef Name="OrderDateTime" />
+          </Key>
+          <Property Name="SushiSetName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SushiSetPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Autorize__Role_I__160F4887">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Autorize" Type="Self.Autorize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Autorize">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Role___5812160E">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Employee__5AEE82B9">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__PaymentM__5BE2A6F2">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID_PaymentMethod" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentMethod_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderSush__Order__6477ECF3">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderSushiSets" Type="Self.OrderSushiSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderSushiSets">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderSush__Sushi__656C112C">
+          <End Role="SushiSets" Type="Self.SushiSets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderSushiSets" Type="Self.OrderSushiSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SushiSets">
+              <PropertyRef Name="ID_SushiSets" />
+            </Principal>
+            <Dependent Role="OrderSushiSets">
+              <PropertyRef Name="SushiSets_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuantityI__Ingre__04E4BC85">
+          <End Role="StorageIngredients" Type="Self.StorageIngredients" Multiplicity="0..1" />
+          <End Role="QuantityIngredients" Type="Self.QuantityIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageIngredients">
+              <PropertyRef Name="ID_Ingredient" />
+            </Principal>
+            <Dependent Role="QuantityIngredients">
+              <PropertyRef Name="Ingredient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuantityI__Sushi__05D8E0BE">
+          <End Role="Sushi" Type="Self.Sushi" Multiplicity="0..1" />
+          <End Role="QuantityIngredients" Type="Self.QuantityIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sushi">
+              <PropertyRef Name="ID_Sushi" />
+            </Principal>
+            <Dependent Role="QuantityIngredients">
+              <PropertyRef Name="Sushi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorageIn__Suppl__4F7CD00D">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="StorageIngredients" Type="Self.StorageIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID_Supplier" />
+            </Principal>
+            <Dependent Role="StorageIngredients">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SushiQuan__Sushi__08B54D69">
+          <End Role="Sushi" Type="Self.Sushi" Multiplicity="0..1" />
+          <End Role="SushiQuant" Type="Self.SushiQuant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sushi">
+              <PropertyRef Name="ID_Sushi" />
+            </Principal>
+            <Dependent Role="SushiQuant">
+              <PropertyRef Name="Sushi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SushiQuan__Sushi__09A971A2">
+          <End Role="SushiSets" Type="Self.SushiSets" Multiplicity="0..1" />
+          <End Role="SushiQuant" Type="Self.SushiQuant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SushiSets">
+              <PropertyRef Name="ID_SushiSets" />
+            </Principal>
+            <Dependent Role="SushiQuant">
+              <PropertyRef Name="SushiSets_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SUSHIBARSModelContainer">
+          <EntitySet Name="Autorize" EntityType="Self.Autorize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderSushiSets" EntityType="Self.OrderSushiSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuantityIngredients" EntityType="Self.QuantityIngredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageIngredients" EntityType="Self.StorageIngredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sushi" EntityType="Self.Sushi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SushiQuant" EntityType="Self.SushiQuant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SushiSets" EntityType="Self.SushiSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SushiOrderSummary" EntityType="Self.SushiOrderSummary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SushiOrderSummary].[SushiSetName] AS [SushiSetName], 
+    [SushiOrderSummary].[SushiSetPrice] AS [SushiSetPrice], 
+    [SushiOrderSummary].[PaymentMethod] AS [PaymentMethod], 
+    [SushiOrderSummary].[OrderDateTime] AS [OrderDateTime]
+    FROM [dbo].[SushiOrderSummary] AS [SushiOrderSummary]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Autorize__Role_I__160F4887" Association="Self.FK__Autorize__Role_I__160F4887">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Autorize" EntitySet="Autorize" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Role___5812160E" Association="Self.FK__Employees__Role___5812160E">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Employee__5AEE82B9" Association="Self.FK__Orders__Employee__5AEE82B9">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__PaymentM__5BE2A6F2" Association="Self.FK__Orders__PaymentM__5BE2A6F2">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderSush__Order__6477ECF3" Association="Self.FK__OrderSush__Order__6477ECF3">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderSushiSets" EntitySet="OrderSushiSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderSush__Sushi__656C112C" Association="Self.FK__OrderSush__Sushi__656C112C">
+            <End Role="SushiSets" EntitySet="SushiSets" />
+            <End Role="OrderSushiSets" EntitySet="OrderSushiSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuantityI__Ingre__04E4BC85" Association="Self.FK__QuantityI__Ingre__04E4BC85">
+            <End Role="StorageIngredients" EntitySet="StorageIngredients" />
+            <End Role="QuantityIngredients" EntitySet="QuantityIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuantityI__Sushi__05D8E0BE" Association="Self.FK__QuantityI__Sushi__05D8E0BE">
+            <End Role="Sushi" EntitySet="Sushi" />
+            <End Role="QuantityIngredients" EntitySet="QuantityIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorageIn__Suppl__4F7CD00D" Association="Self.FK__StorageIn__Suppl__4F7CD00D">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="StorageIngredients" EntitySet="StorageIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SushiQuan__Sushi__08B54D69" Association="Self.FK__SushiQuan__Sushi__08B54D69">
+            <End Role="Sushi" EntitySet="Sushi" />
+            <End Role="SushiQuant" EntitySet="SushiQuant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SushiQuan__Sushi__09A971A2" Association="Self.FK__SushiQuan__Sushi__09A971A2">
+            <End Role="SushiSets" EntitySet="SushiSets" />
+            <End Role="SushiQuant" EntitySet="SushiQuant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SUSHIBARSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autorize">
+          <Key>
+            <PropertyRef Name="ID_Autorize" />
+          </Key>
+          <Property Name="ID_Autorize" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Logins" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passwords" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Autorize__Role_I__160F4887" FromRole="Autorize" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Employees__Role___5812160E" FromRole="Employees" ToRole="Roles" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Employee__5AEE82B9" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalAmount" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethod_ID" Type="Int32" />
+          <Property Name="Employee_ID" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Orders__Employee__5AEE82B9" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK__Orders__PaymentM__5BE2A6F2" FromRole="Orders" ToRole="PaymentMethods" />
+          <NavigationProperty Name="OrderSushiSets" Relationship="Self.FK__OrderSush__Order__6477ECF3" FromRole="Orders" ToRole="OrderSushiSets" />
+        </EntityType>
+        <EntityType Name="OrderSushiSets">
+          <Key>
+            <PropertyRef Name="ID_OrderProduct" />
+          </Key>
+          <Property Name="ID_OrderProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_ID" Type="Int32" />
+          <Property Name="SushiSets_ID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderSush__Order__6477ECF3" FromRole="OrderSushiSets" ToRole="Orders" />
+          <NavigationProperty Name="SushiSets" Relationship="Self.FK__OrderSush__Sushi__656C112C" FromRole="OrderSushiSets" ToRole="SushiSets" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="ID_PaymentMethod" />
+          </Key>
+          <Property Name="ID_PaymentMethod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__PaymentM__5BE2A6F2" FromRole="PaymentMethods" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="QuantityIngredients">
+          <Key>
+            <PropertyRef Name="ID_QuantityIngredients" />
+          </Key>
+          <Property Name="ID_QuantityIngredients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Sushi_ID" Type="Int32" />
+          <Property Name="Ingredient_ID" Type="Int32" />
+          <NavigationProperty Name="StorageIngredients" Relationship="Self.FK__QuantityI__Ingre__04E4BC85" FromRole="QuantityIngredients" ToRole="StorageIngredients" />
+          <NavigationProperty Name="Sushi" Relationship="Self.FK__QuantityI__Sushi__05D8E0BE" FromRole="QuantityIngredients" ToRole="Sushi" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Autorize" Relationship="Self.FK__Autorize__Role_I__160F4887" FromRole="Roles" ToRole="Autorize" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Role___5812160E" FromRole="Roles" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="StorageIngredients">
+          <Key>
+            <PropertyRef Name="ID_Ingredient" />
+          </Key>
+          <Property Name="ID_Ingredient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IngredientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PriceFor50Gram" Type="Int32" Nullable="false" />
+          <Property Name="Supplier_ID" Type="Int32" />
+          <NavigationProperty Name="QuantityIngredients" Relationship="Self.FK__QuantityI__Ingre__04E4BC85" FromRole="StorageIngredients" ToRole="QuantityIngredients" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__StorageIn__Suppl__4F7CD00D" FromRole="StorageIngredients" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="ID_Supplier" />
+          </Key>
+          <Property Name="ID_Supplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address_Suppliers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StorageIngredients" Relationship="Self.FK__StorageIn__Suppl__4F7CD00D" FromRole="Suppliers" ToRole="StorageIngredients" />
+        </EntityType>
+        <EntityType Name="Sushi">
+          <Key>
+            <PropertyRef Name="ID_Sushi" />
+          </Key>
+          <Property Name="ID_Sushi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SushiName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PriceForOneRoll" Type="Int32" Nullable="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QuantityIngredients" Relationship="Self.FK__QuantityI__Sushi__05D8E0BE" FromRole="Sushi" ToRole="QuantityIngredients" />
+          <NavigationProperty Name="SushiQuant" Relationship="Self.FK__SushiQuan__Sushi__08B54D69" FromRole="Sushi" ToRole="SushiQuant" />
+        </EntityType>
+        <EntityType Name="SushiQuant">
+          <Key>
+            <PropertyRef Name="ID_SushiQuant" />
+          </Key>
+          <Property Name="ID_SushiQuant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Sushi_ID" Type="Int32" />
+          <Property Name="SushiSets_ID" Type="Int32" />
+          <NavigationProperty Name="Sushi" Relationship="Self.FK__SushiQuan__Sushi__08B54D69" FromRole="SushiQuant" ToRole="Sushi" />
+          <NavigationProperty Name="SushiSets" Relationship="Self.FK__SushiQuan__Sushi__09A971A2" FromRole="SushiQuant" ToRole="SushiSets" />
+        </EntityType>
+        <EntityType Name="SushiSets">
+          <Key>
+            <PropertyRef Name="ID_SushiSets" />
+          </Key>
+          <Property Name="ID_SushiSets" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SushiSetName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SushiSetPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SushiQuant_ID" Type="Int32" />
+          <NavigationProperty Name="OrderSushiSets" Relationship="Self.FK__OrderSush__Sushi__656C112C" FromRole="SushiSets" ToRole="OrderSushiSets" />
+          <NavigationProperty Name="SushiQuant" Relationship="Self.FK__SushiQuan__Sushi__09A971A2" FromRole="SushiSets" ToRole="SushiQuant" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Autorize__Role_I__160F4887">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Autorize" Type="Self.Autorize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Autorize">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Role___5812160E">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Employee__5AEE82B9">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__PaymentM__5BE2A6F2">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID_PaymentMethod" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentMethod_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderSush__Order__6477ECF3">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderSushiSets" Type="Self.OrderSushiSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderSushiSets">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderSush__Sushi__656C112C">
+          <End Role="SushiSets" Type="Self.SushiSets" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderSushiSets" Type="Self.OrderSushiSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SushiSets">
+              <PropertyRef Name="ID_SushiSets" />
+            </Principal>
+            <Dependent Role="OrderSushiSets">
+              <PropertyRef Name="SushiSets_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuantityI__Ingre__04E4BC85">
+          <End Role="StorageIngredients" Type="Self.StorageIngredients" Multiplicity="0..1" />
+          <End Role="QuantityIngredients" Type="Self.QuantityIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageIngredients">
+              <PropertyRef Name="ID_Ingredient" />
+            </Principal>
+            <Dependent Role="QuantityIngredients">
+              <PropertyRef Name="Ingredient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuantityI__Sushi__05D8E0BE">
+          <End Role="Sushi" Type="Self.Sushi" Multiplicity="0..1" />
+          <End Role="QuantityIngredients" Type="Self.QuantityIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sushi">
+              <PropertyRef Name="ID_Sushi" />
+            </Principal>
+            <Dependent Role="QuantityIngredients">
+              <PropertyRef Name="Sushi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StorageIn__Suppl__4F7CD00D">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="StorageIngredients" Type="Self.StorageIngredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID_Supplier" />
+            </Principal>
+            <Dependent Role="StorageIngredients">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SushiQuan__Sushi__08B54D69">
+          <End Role="Sushi" Type="Self.Sushi" Multiplicity="0..1" />
+          <End Role="SushiQuant" Type="Self.SushiQuant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sushi">
+              <PropertyRef Name="ID_Sushi" />
+            </Principal>
+            <Dependent Role="SushiQuant">
+              <PropertyRef Name="Sushi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SushiQuan__Sushi__09A971A2">
+          <End Role="SushiSets" Type="Self.SushiSets" Multiplicity="0..1" />
+          <End Role="SushiQuant" Type="Self.SushiQuant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SushiSets">
+              <PropertyRef Name="ID_SushiSets" />
+            </Principal>
+            <Dependent Role="SushiQuant">
+              <PropertyRef Name="SushiSets_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SUSHIBARSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autorize" EntityType="Self.Autorize" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrderSushiSets" EntityType="Self.OrderSushiSets" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" />
+          <EntitySet Name="QuantityIngredients" EntityType="Self.QuantityIngredients" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="StorageIngredients" EntityType="Self.StorageIngredients" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+          <EntitySet Name="Sushi" EntityType="Self.Sushi" />
+          <EntitySet Name="SushiQuant" EntityType="Self.SushiQuant" />
+          <EntitySet Name="SushiSets" EntityType="Self.SushiSets" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Autorize__Role_I__160F4887" Association="Self.FK__Autorize__Role_I__160F4887">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Autorize" EntitySet="Autorize" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Role___5812160E" Association="Self.FK__Employees__Role___5812160E">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Employee__5AEE82B9" Association="Self.FK__Orders__Employee__5AEE82B9">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__PaymentM__5BE2A6F2" Association="Self.FK__Orders__PaymentM__5BE2A6F2">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderSush__Order__6477ECF3" Association="Self.FK__OrderSush__Order__6477ECF3">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderSushiSets" EntitySet="OrderSushiSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderSush__Sushi__656C112C" Association="Self.FK__OrderSush__Sushi__656C112C">
+            <End Role="SushiSets" EntitySet="SushiSets" />
+            <End Role="OrderSushiSets" EntitySet="OrderSushiSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuantityI__Ingre__04E4BC85" Association="Self.FK__QuantityI__Ingre__04E4BC85">
+            <End Role="StorageIngredients" EntitySet="StorageIngredients" />
+            <End Role="QuantityIngredients" EntitySet="QuantityIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuantityI__Sushi__05D8E0BE" Association="Self.FK__QuantityI__Sushi__05D8E0BE">
+            <End Role="Sushi" EntitySet="Sushi" />
+            <End Role="QuantityIngredients" EntitySet="QuantityIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StorageIn__Suppl__4F7CD00D" Association="Self.FK__StorageIn__Suppl__4F7CD00D">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="StorageIngredients" EntitySet="StorageIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SushiQuan__Sushi__08B54D69" Association="Self.FK__SushiQuan__Sushi__08B54D69">
+            <End Role="Sushi" EntitySet="Sushi" />
+            <End Role="SushiQuant" EntitySet="SushiQuant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SushiQuan__Sushi__09A971A2" Association="Self.FK__SushiQuan__Sushi__09A971A2">
+            <End Role="SushiSets" EntitySet="SushiSets" />
+            <End Role="SushiQuant" EntitySet="SushiQuant" />
+          </AssociationSet>
+          <EntitySet Name="SushiOrderSummary" EntityType="SUSHIBARSModel.SushiOrderSummary" />
+        </EntityContainer>
+        <EntityType Name="SushiOrderSummary">
+          <Key>
+            <PropertyRef Name="SushiSetName" />
+            <PropertyRef Name="SushiSetPrice" />
+            <PropertyRef Name="PaymentMethod" />
+            <PropertyRef Name="OrderDateTime" />
+          </Key>
+          <Property Name="SushiSetName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SushiSetPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SUSHIBARSModelContainer" CdmEntityContainer="SUSHIBARSEntities">
+          <EntitySetMapping Name="Autorize">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Autorize">
+              <MappingFragment StoreEntitySet="Autorize">
+                <ScalarProperty Name="ID_Autorize" ColumnName="ID_Autorize" />
+                <ScalarProperty Name="Logins" ColumnName="Logins" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="PaymentMethod_ID" ColumnName="PaymentMethod_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSushiSets">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.OrderSushiSets">
+              <MappingFragment StoreEntitySet="OrderSushiSets">
+                <ScalarProperty Name="ID_OrderProduct" ColumnName="ID_OrderProduct" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="SushiSets_ID" ColumnName="SushiSets_ID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.PaymentMethods">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="ID_PaymentMethod" ColumnName="ID_PaymentMethod" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuantityIngredients">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.QuantityIngredients">
+              <MappingFragment StoreEntitySet="QuantityIngredients">
+                <ScalarProperty Name="ID_QuantityIngredients" ColumnName="ID_QuantityIngredients" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Sushi_ID" ColumnName="Sushi_ID" />
+                <ScalarProperty Name="Ingredient_ID" ColumnName="Ingredient_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageIngredients">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.StorageIngredients">
+              <MappingFragment StoreEntitySet="StorageIngredients">
+                <ScalarProperty Name="ID_Ingredient" ColumnName="ID_Ingredient" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+                <ScalarProperty Name="PriceFor50Gram" ColumnName="PriceFor50Gram" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="ID_Supplier" ColumnName="ID_Supplier" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address_Suppliers" ColumnName="Address_Suppliers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sushi">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.Sushi">
+              <MappingFragment StoreEntitySet="Sushi">
+                <ScalarProperty Name="ID_Sushi" ColumnName="ID_Sushi" />
+                <ScalarProperty Name="SushiName" ColumnName="SushiName" />
+                <ScalarProperty Name="PriceForOneRoll" ColumnName="PriceForOneRoll" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SushiQuant">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.SushiQuant">
+              <MappingFragment StoreEntitySet="SushiQuant">
+                <ScalarProperty Name="ID_SushiQuant" ColumnName="ID_SushiQuant" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Sushi_ID" ColumnName="Sushi_ID" />
+                <ScalarProperty Name="SushiSets_ID" ColumnName="SushiSets_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SushiSets">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.SushiSets">
+              <MappingFragment StoreEntitySet="SushiSets">
+                <ScalarProperty Name="ID_SushiSets" ColumnName="ID_SushiSets" />
+                <ScalarProperty Name="SushiSetName" ColumnName="SushiSetName" />
+                <ScalarProperty Name="SushiSetPrice" ColumnName="SushiSetPrice" />
+                <ScalarProperty Name="SushiQuant_ID" ColumnName="SushiQuant_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SushiOrderSummary">
+            <EntityTypeMapping TypeName="SUSHIBARSModel.SushiOrderSummary">
+              <MappingFragment StoreEntitySet="SushiOrderSummary">
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="SushiSetPrice" ColumnName="SushiSetPrice" />
+                <ScalarProperty Name="SushiSetName" ColumnName="SushiSetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
